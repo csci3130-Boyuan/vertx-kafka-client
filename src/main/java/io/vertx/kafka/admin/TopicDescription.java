@@ -44,22 +44,47 @@ public class TopicDescription {
 
   }
 
-  /**
-   * Constructor
-   *
-   * @param isInternal Whether the topic is internal to Kafka.
-   * @param name The name of the topic.
-   * @param partitions A list of partitions where the index represents the partition id and the element
-   *                   contains leadership and replica information for that partition.
-   * @param topicId Uuid for the topic.
-   * @param authorizedOperations Authorized operations for this topic, or null if this is not known.
-   */
-  public TopicDescription(boolean isInternal, String name, List<TopicPartitionInfo> partitions, Uuid topicId, Set<AclOperation> authorizedOperations) {
-    this.isInternal = isInternal;
-    this.name = name;
-    this.partitions = partitions;
-    this.topicId = topicId;
-    this.authorizedOperations = authorizedOperations;
+  public static class Builder {
+    private boolean isInternal;
+    private String name;
+    private List<TopicPartitionInfo> partitions;
+    private Uuid topicId;
+    private Set<AclOperation> authorizedOperations;
+
+    public Builder setInternal(boolean isInternal) {
+      this.isInternal = isInternal;
+      return this;
+    }
+
+    public Builder setName(String name) {
+      this.name = name;
+      return this;
+    }
+
+    public Builder setPartitions(List<TopicPartitionInfo> partitions) {
+      this.partitions = partitions;
+      return this;
+    }
+
+    public Builder setTopicId(Uuid topicId) {
+      this.topicId = topicId;
+      return this;
+    }
+
+    public Builder setAuthorizedOperations(Set<AclOperation> authorizedOperations) {
+      this.authorizedOperations = authorizedOperations;
+      return this;
+    }
+
+    public TopicDescription build() {
+      TopicDescription description = new TopicDescription();
+      description.isInternal = this.isInternal;
+      description.name = this.name;
+      description.partitions = this.partitions;
+      description.topicId = this.topicId;
+      description.authorizedOperations = this.authorizedOperations;
+      return description;
+    }
   }
 
   /**
