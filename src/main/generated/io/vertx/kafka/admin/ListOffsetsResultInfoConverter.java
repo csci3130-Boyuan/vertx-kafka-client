@@ -21,21 +21,33 @@ public class ListOffsetsResultInfoConverter {
     for (java.util.Map.Entry<String, Object> member : json) {
       switch (member.getKey()) {
         case "leaderEpoch":
-          if (member.getValue() instanceof Number) {
-            obj.setLeaderEpoch(((Number)member.getValue()).intValue());
-          }
+          convertAndSetLeaderEpoch(member.getValue(), obj);
           break;
         case "offset":
-          if (member.getValue() instanceof Number) {
-            obj.setOffset(((Number)member.getValue()).longValue());
-          }
+          convertAndSetOffset(member.getValue(), obj);
           break;
         case "timestamp":
-          if (member.getValue() instanceof Number) {
-            obj.setTimestamp(((Number)member.getValue()).longValue());
-          }
+          convertAndSetTimestamp(member.getValue(), obj);
           break;
       }
+    }
+  }
+
+  private static void convertAndSetLeaderEpoch(Object value, ListOffsetsResultInfo obj) {
+    if (value instanceof Number) {
+      obj.setLeaderEpoch(((Number)value).intValue());
+    }
+  }
+
+  private static void convertAndSetOffset(Object value, ListOffsetsResultInfo obj) {
+    if (value instanceof Number) {
+      obj.setOffset(((Number)value).longValue());
+    }
+  }
+
+  private static void convertAndSetTimestamp(Object value, ListOffsetsResultInfo obj) {
+    if (value instanceof Number) {
+      obj.setTimestamp(((Number)value).longValue());
     }
   }
 
