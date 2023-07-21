@@ -3,6 +3,9 @@
 [![Build Status (5.x)](https://github.com/vert-x3/vertx-kafka-client/actions/workflows/ci-5.x.yml/badge.svg)](https://github.com/vert-x3/vertx-kafka-client/actions/workflows/ci-5.x.yml)
 [![Build Status (4.x)](https://github.com/vert-x3/vertx-kafka-client/actions/workflows/ci-4.x.yml/badge.svg)](https://github.com/vert-x3/vertx-kafka-client/actions/workflows/ci-4.x.yml)
 
+Please use "mvn clean package -DskipTests" command to compile, use "mvn clean verify" to test.
+
+
 This component provides a Kafka client for reading and sending messages from/to an [Apache Kafka](https://kafka.apache.org/) cluster.
 From the consumer point of view, its API provides a bunch of methods for subscribing to a topic partition receiving
 messages asynchronously or reading them as a stream (even with the possibility to pause the stream itself).
