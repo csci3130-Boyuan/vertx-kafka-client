@@ -475,8 +475,8 @@ public class KafkaAdminClientImpl implements KafkaAdminClient {
     ContextInternal ctx = (ContextInternal) vertx.getOrCreateContext();
     Promise<Map<TopicPartition, OffsetAndMetadata>> promise = ctx.promise();
 
-    ListConsumerGroupOffsetsResult listConsumerGroupOffsetsResult = this.adminClient.listConsumerGroupOffsets(groupId, Helper.to(options));
-    listConsumerGroupOffsetsResult.partitionsToOffsetAndMetadata().whenComplete((cgo, ex) -> {
+    ListConsumerGroupOffsetsResult result = this.adminClient.listConsumerGroupOffsets(groupId, Helper.to(options));
+    result.partitionsToOffsetAndMetadata().whenComplete((cgo, ex) -> {
 
       if (ex == null) {
         Map<TopicPartition, OffsetAndMetadata> consumerGroupOffsets = new HashMap<>();
